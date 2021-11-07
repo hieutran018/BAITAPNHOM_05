@@ -32,6 +32,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
+//ChiHieu
 class ListPage extends StatefulWidget {
   const ListPage({Key? key}) : super(key: key);
   State<ListPage> createState() => _ListPage();
@@ -350,6 +351,7 @@ class SplashScreen extends StatefulWidget {
   _SplashScreenState createState() => _SplashScreenState();
 }
 
+//Gia Bao
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
