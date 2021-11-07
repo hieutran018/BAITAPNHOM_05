@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
-import 'package:splashscreen/splashscreen.dart';
+import 'dart:async';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 void main() {
   runApp(const MyApp());
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: SplashScreenPage(),
+      home: SplashScreen(),
     );
   }
 }
@@ -344,21 +345,58 @@ class _ListPage extends State<ListPage> {
   }
 }
 
-class SplashScreenPage extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
+  @override
+  _SplashScreenState createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+    Timer(
+        Duration(seconds: 3),
+        () => Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (BuildContext context) => ListPage())));
+  }
+
   @override
   Widget build(BuildContext context) {
-    Widget ImageSection = Image.asset('img/1.jpg', width: 55, height: 55);
-    return SplashScreen(
-      seconds: 10,
-      navigateAfterSeconds: new ListPage(),
-      backgroundColor: Colors.blue[200],
-      title: new Text(
-        'SignIn',
-        textScaleFactor: 2,
+    Widget Imagesection = Image.asset(
+      'img/1.jpg',
+      fit: BoxFit.cover,
+    );
+    Widget TextSignln = Container(
+      alignment: Alignment.center,
+      child: Text(
+        'Signln',
+        style: TextStyle(fontSize: 60, color: Colors.white),
       ),
-      loadingText: Text("Speak, Friend and Enter"),
-      photoSize: 110.0,
-      loaderColor: Colors.white,
+    );
+    Widget Textabc = Container(
+      alignment: Alignment.center,
+      child: Text(
+        'Speak, friend, and enter',
+        style: TextStyle(fontSize: 20),
+      ),
+    );
+    Widget Load = Container(
+      width: 300,
+      height: 300,
+      child: SpinKitFadingCircle(color: Colors.white),
+    );
+    return Scaffold(
+      backgroundColor: Colors.cyan,
+      body: Center(
+          child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Imagesection,
+          TextSignln,
+          Textabc,
+          Load,
+        ],
+      )),
     );
   }
 }
