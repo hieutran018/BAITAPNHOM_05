@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
+//Van Anh
 class LoginPage extends StatelessWidget {
   LoginPage({Key? key}) : super(key: key);
 
@@ -106,7 +107,28 @@ class LoginPage extends StatelessWidget {
                         padding: EdgeInsets.symmetric(
                             horizontal: 150, vertical: 30)),
                     onPressed: () {
-                      if (_email.text == _password.text) {
+                      if (_email.text == "" || _password.text == "") {
+                        showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                title: Text('Thông báo'),
+                                content: Text('Chưa nhập thông tin'),
+                                actions: <Widget>[
+                                  //Button tắt
+                                  TextButton(
+                                    onPressed: () =>
+                                        Navigator.pop(context, true),
+                                    child: Text('Xác nhận'),
+                                  )
+                                ],
+                              );
+                            }).then((exit) {
+                          if (exit == null) return;
+                          if (exit) {
+                          } else {}
+                        });
+                      } else if (_email.text == _password.text) {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -193,6 +215,7 @@ class LoginUnsuccessfulPage extends StatelessWidget {
   }
 }
 
+//Chi Hieu
 class ListPage extends StatefulWidget {
   const ListPage({Key? key}) : super(key: key);
   State<ListPage> createState() => _ListPage();
@@ -506,6 +529,7 @@ class _ListPage extends State<ListPage> {
   }
 }
 
+//Gia Bao
 class SplashScreen extends StatefulWidget {
   @override
   _SplashScreenState createState() => _SplashScreenState();
