@@ -72,7 +72,6 @@ class LoginPage extends StatelessWidget {
               child: TextField(
                 controller: _email,
                 textAlign: TextAlign.center,
-                obscureText: true,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     fillColor: Colors.white,
@@ -107,12 +106,19 @@ class LoginPage extends StatelessWidget {
                         padding: EdgeInsets.symmetric(
                             horizontal: 150, vertical: 30)),
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                const LoginUnsuccessfulPage()),
-                      );
+                      if (_email.text == _password.text) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => SplashScreen()),
+                        );
+                      } else {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => LoginUnsuccessfulPage()),
+                        );
+                      }
                     },
                     child: Text(
                       "SIGN IN",
